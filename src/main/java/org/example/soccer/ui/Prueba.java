@@ -9,7 +9,7 @@ public class Prueba {
 
     public Prueba() {
         btnPrueba.addActionListener(e -> {
-            JOptionPane.showMessageDialog(null,"Iniciar Prueba");
+            JOptionPane.showMessageDialog(null,"Iniciar Prueba Base");
         });
     }
     public static void main(String[] args) {
