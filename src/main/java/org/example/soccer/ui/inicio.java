@@ -13,5 +13,8 @@ public class inicio {
         frame.setTitle("Inicio");
         frame.setVisible(true);
 
+
     }
+
+
 }
