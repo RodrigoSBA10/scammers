@@ -12,6 +12,5 @@ public class inicio {
         frame.setSize(500,500);
         frame.setTitle("Inicio");
         frame.setVisible(true);
-
     }
 }
