@@ -1,0 +1,12 @@
+package org.example.soccer.servicios;
+
+import org.example.soccer.modelo.Equipo;
+
+import java.util.List;
+
+public interface EquipoServicio {
+    public List<Equipo> obtenerEquipos();
+    public void agregarEquipo(Equipo equipo);
+    public void eliminarEquipo(Equipo equipo);
+    public void editarEquipo(Equipo equipo);
+}
