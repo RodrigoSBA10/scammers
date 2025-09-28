@@ -60,6 +60,7 @@ public class UIEquipos {
                     equipoServicios.editarEquipo(equipo);
                     txtEdit.setText("");
                     txtEdit.setEditable(false);
+                    JOptionPane.showMessageDialog(null, "Equipo editado");
                     llenarTabla();
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecciona un equipo de la tabla para editar");
