@@ -1,6 +1,6 @@
 package org.example.soccer.repositorio;
 
-import org.example.soccer.entidades.Futbolista;
+import org.example.soccer.modelo.Futbolista;
 
 import java.util.List;
 

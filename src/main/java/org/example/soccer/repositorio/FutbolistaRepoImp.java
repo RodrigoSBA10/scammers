@@ -2,7 +2,7 @@ package org.example.soccer.repositorio;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
-import org.example.soccer.entidades.Futbolista;
+import org.example.soccer.modelo.Futbolista;
 
 import java.util.List;
 
