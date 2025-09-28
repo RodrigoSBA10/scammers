@@ -1,4 +1,4 @@
-package org.example.soccer.entidades;
+package org.example.soccer.modelo;
 
 import jakarta.persistence.*;
 
@@ -15,7 +15,7 @@ public class Futbolista {
     //Relacion de Equipo
     @ManyToOne
     //Es La CLave Foranea De Equipo
-    @JoinColumn(name = "ID_Equipo")
+    @JoinColumn(name = "id")
     private Equipo equipo;
     //Relacion de posiciones
     @ManyToOne

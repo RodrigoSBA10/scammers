@@ -1,4 +1,4 @@
-package org.example.soccer.entidades;
+package org.example.soccer.modelo;
 
 import jakarta.persistence.*;
 
