@@ -32,4 +32,5 @@ public class EquipoServicioImp implements EquipoServicio{
     public void editarEquipo(Equipo equipo) {
         equipoRepo.editarEquipo(equipo);
     }
+
 }

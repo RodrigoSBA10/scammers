@@ -42,4 +42,5 @@ public class EquipoRepoImp implements EquipoRepo {
         emf.merge(equipo);
         emf.getTransaction().commit();
     }
+
 }
