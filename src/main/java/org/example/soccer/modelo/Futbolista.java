@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import java.sql.Date;
 
 @Entity
-
 public class Futbolista {
-
     @Id //Identificador unico (PK)
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
@@ -15,7 +13,7 @@ public class Futbolista {
     //Relacion de Equipo
     @ManyToOne
     //Es La CLave Foranea De Equipo
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "ID_Equipo")
     private Equipo equipo;
     //Relacion de posiciones
     @ManyToOne
@@ -74,5 +72,16 @@ public class Futbolista {
 
     public void setFechaN(Date fechaN) {
         this.fechaN = fechaN;
+    }
+
+    @Override
+    public String toString() {
+        return "Futbolista{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", equipo=" + equipo.getNombre() +
+                ", pos=" + pos.getPos() +
+                ", fechaN=" + fechaN +
+                '}';
     }
 }
