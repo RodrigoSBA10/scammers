@@ -1,6 +1,7 @@
 package org.example.soccer.modelo;
 
 import jakarta.persistence.*;
+import org.example.soccer.enums.Pos;
 
 import java.util.List;
 
@@ -9,7 +10,9 @@ public class Posicion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nombre; // Nombre de la posicion
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Posiciones")
+    private Pos pos; // Nombre de la posicion
     //En esta relacion se asigna ya que una posicion
     @OneToMany(mappedBy = "pos")
     private List<Futbolista> futbolistas;
@@ -17,8 +20,9 @@ public class Posicion {
     public Posicion() {
 
     }
-    public Posicion(String nombre) {
-        this.nombre = nombre;
+
+    public Posicion(Pos pos) {
+        this.pos = pos;
     }
 
     public int getId() {
@@ -29,12 +33,12 @@ public class Posicion {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Pos getPos() {
+        return pos;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPos(Pos pos) {
+        this.pos = pos;
     }
 
     public List<Futbolista> getFutbolistas() {
@@ -43,5 +47,12 @@ public class Posicion {
 
     public void setFutbolistas(List<Futbolista> futbolistas) {
         this.futbolistas = futbolistas;
+    }
+
+    @Override
+    public String toString() {
+        return "Posicion{" +
+                "id=" + id +
+                '}';
     }
 }

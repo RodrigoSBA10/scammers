@@ -9,4 +9,5 @@ public interface EquipoServicio {
     public void agregarEquipo(Equipo equipo);
     public void eliminarEquipo(Equipo equipo);
     public void editarEquipo(Equipo equipo);
+    Equipo obtenerEquipo(String nombreEquipo);
 }

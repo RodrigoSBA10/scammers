@@ -42,4 +42,14 @@ public class EquipoRepoImp implements EquipoRepo {
         emf.merge(equipo);
         emf.getTransaction().commit();
     }
+    @Override
+    public Equipo obtenerEquipo(String nombre) {
+        emf.getTransaction().begin();
+        TypedQuery<Equipo>  query = emf.createQuery("SELECT e FROM Equipo e WHERE e.nombre = :nom", Equipo.class);
+        query.setParameter("nom", nombre);
+        emf.getTransaction().commit();
+        Equipo eq = query.getSingleResult();
+        return eq;
+
+    }
 }
