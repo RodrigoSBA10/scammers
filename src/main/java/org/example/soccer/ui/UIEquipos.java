@@ -39,7 +39,7 @@ public class UIEquipos {
         tableEquipos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int fila =  tableEquipos.getSelectedRow();
+                int fila =  tableEquipos.rowAtPoint(e.getPoint());
                 if (fila >= 0) {
                     tableEquipos.setRowSelectionInterval(fila, fila);
                     if (listaEquipos != null && fila < listaEquipos.size()) {
