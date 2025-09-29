@@ -46,23 +46,24 @@
           <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Agregar Futbolista"/>
+          <text value="Futbolistas"/>
         </properties>
       </component>
-      <component id="5a6c1" class="javax.swing.JButton" binding="bntAgregarPar">
-        <constraints>
-          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Iniciar Partido"/>
-        </properties>
-      </component>
-      <component id="e2c2b" class="javax.swing.JButton" binding="bntAgregarEqu">
+      <component id="9fc18" class="javax.swing.JButton" binding="btnEquipo">
         <constraints>
           <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Agregar Equipo"/>
+          <hideActionText value="false"/>
+          <text value="Equipos"/>
+        </properties>
+      </component>
+      <component id="ee046" class="javax.swing.JButton" binding="btnPartidos">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Partidos"/>
         </properties>
       </component>
     </children>

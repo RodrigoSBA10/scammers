@@ -1,11 +1,13 @@
 package org.example.soccer.modelo;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Date;
 
 @Entity
-@Table(name = "Partidos")
+@Table(name = "partidos")
 public class Partido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

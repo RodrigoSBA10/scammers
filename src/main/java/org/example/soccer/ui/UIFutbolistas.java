@@ -102,15 +102,15 @@ public class UIFutbolistas {
             llenarTabla();
         });
         volverButton.addActionListener(e ->  {
-            SwingUtilities.getWindowAncestor(jPanel).dispose(); // cierra el JFrame actual
             inicio inicio = new inicio();
             JFrame frame = new JFrame("inicio");
             frame.setContentPane(inicio.getPanel1());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setSize(650, 520);
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-
+            SwingUtilities.getWindowAncestor(jPanel).dispose(); // cierra el JFrame actual
         });
     }
 

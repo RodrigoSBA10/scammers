@@ -1,8 +1,12 @@
 package org.example.soccer.modelo;
 import jakarta.persistence.*;
+import org.hibernate.Remove;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "Equipos")
+@Table(name = "equipos")
 public class Equipo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
