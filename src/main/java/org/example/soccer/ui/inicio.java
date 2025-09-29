@@ -9,6 +9,7 @@ public class inicio {
     private JButton bntAgregarEqu;
 
     public static void main(String[] args) {
+
         JFrame frame = new JFrame("inicio");
         frame.setContentPane(new inicio().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

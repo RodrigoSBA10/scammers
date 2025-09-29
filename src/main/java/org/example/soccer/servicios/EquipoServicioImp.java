@@ -32,6 +32,5 @@ public class EquipoServicioImp implements EquipoServicio{
     public void editarEquipo(Equipo equipo) {
         equipoRepo.editarEquipo(equipo);
     }
-    @Override
-    public Equipo obtenerEquipo(String nombreEquipo) { return equipoRepo.obtenerEquipo(nombreEquipo); }
+
 }

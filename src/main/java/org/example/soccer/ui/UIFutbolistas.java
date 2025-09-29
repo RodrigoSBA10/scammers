@@ -21,7 +21,7 @@ public class UIFutbolistas {
     private JButton btnModificar;
     private JButton btnEliminar;
     private JComboBox <Enum> cbPosiciones;
-    private JComboBox <String> cbEquipos;
+    private JComboBox <Equipo> cbEquipos;
     private JPanel jPanel;
     private JButton volverButton;
     public Futbolista futbolista;
@@ -31,6 +31,7 @@ public class UIFutbolistas {
     private List<Equipo> listaEquipos;
     private List<Futbolista> listaFutbolistas = new ArrayList<>();
     private List<Posicion> listaPosiciones;
+    private PosicionServicio posicionServicio = new PosicionServicioImp();
 
 
     public static void main(String[] args) {
@@ -43,7 +44,7 @@ public class UIFutbolistas {
     }
 
     public UIFutbolistas() {
-
+       agregarPosicion();
         llenarTabla();
         //Cuando se haga clik en la tabla
         jtFutbolistas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,10 +65,10 @@ public class UIFutbolistas {
         listaEquipos = equipoServicios.obtenerEquipos();
 
        // Se crea un modelo vacio
-        DefaultComboBoxModel<String> modeloEquipos = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Equipo> modeloEquipos = new DefaultComboBoxModel<>();
         //Se recorre la lista agregando al modelo
         for (Equipo equipo : listaEquipos) {
-            modeloEquipos.addElement(equipo.getNombre());
+            modeloEquipos.addElement(equipo);
         }
         // Se asigna  el modelo al JComboBox
         cbEquipos.setModel(modeloEquipos);
@@ -114,20 +115,34 @@ public class UIFutbolistas {
 
     public void agregar(){
         String nombre = txtNombre.getText().trim();
-        String equipo = cbEquipos.getSelectedItem().toString();
+        Equipo equipo = (Equipo) cbEquipos.getSelectedItem();
         Pos posicion = (Pos) cbPosiciones.getSelectedItem();
         String fechaTexto = txFecha.getText().trim();
         if (nombre.isEmpty()|| fechaTexto.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No Pueden Estar Vacios Los Campos");
         } else {
-            Date fecha = Date.valueOf(fechaTexto);
-            Equipo equipoSeleccionado = equipoServicios.obtenerEquipo(equipo); //Busca al equipo
+            Date fecha = Date.valueOf(fechaTexto); //Busca al equipo
             Posicion p1 = posicionServicios.obtenerPosicion(posicion);  // Buscar la posicion seleccionada
-            futbolista = new Futbolista(nombre,equipoSeleccionado,p1,fecha);
+            futbolista = new Futbolista(nombre,equipo,p1,fecha);
             futbolistaServicio.agregarFutbolista(futbolista);
             JOptionPane.showMessageDialog(null, "Futbolista agregado correctamente");
             limpiarCampos();
         }
+    }
+
+    public void agregarPosicion(){
+        List<Posicion> pos = posicionServicios.listarPosiciones();
+        if (pos != null) {
+            Posicion p2 = new Posicion(Pos.MEDIO);
+            Posicion p3 = new Posicion(Pos.PORTERO);
+            Posicion p4 = new Posicion(Pos.DEFENSA);
+            Posicion p1 = new Posicion(Pos.DELANTERO);
+            posicionServicio .agregarPosicion(p1);
+            posicionServicio .agregarPosicion(p2);
+            posicionServicio .agregarPosicion(p3);
+            posicionServicio .agregarPosicion(p4);
+        }
+
     }
 
     public void modificar() {
