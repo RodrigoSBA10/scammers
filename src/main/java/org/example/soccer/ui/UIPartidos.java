@@ -17,15 +17,14 @@ public class UIPartidos {
     private int golesLocal, golesVisitante;
     private PartidoServicio  partidoServicio =  new PartidoServicioImp();
     private JPanel panel1;
-    private JTable tablaEquipos;
-    private JTextField txtLocal;
-    private JTextField txtVisitante;
     private JTextField txtGolesL;
     private JTextField txtGolesV;
     private JButton btnEditar;
     private JButton btnAgregar;
     private JTable tablaPartidos;
     private JButton btnEliminar;
+    private JComboBox<Equipo> cbxLocal;
+    private JComboBox<Equipo> cbxVisitante;
     private List<Equipo> equipos;
     private List<Partido> partidos;
     private DefaultTableModel model;
@@ -33,18 +32,18 @@ public class UIPartidos {
     private Equipo eqipoL;
     private Equipo eqipoV;
     private Partido partido;
-    private int bandera = 0;
-    private JButton btnElimar;
 
     public  UIPartidos() {
-        configurarTablaEquipos();
-        llenarTablaEquipos();
+        configurarTabla();
+        llenarComboBox();
         llenarTablaPartidos();
 
         btnAgregar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                eqipoL = (Equipo) cbxLocal.getSelectedItem();
+                eqipoV = (Equipo) cbxVisitante.getSelectedItem();
                 if (eqipoL != null && eqipoV != null) {
                     if (eqipoV != eqipoL) {
                         if (validarCampos()){
@@ -52,79 +51,6 @@ public class UIPartidos {
                                 partido = new Partido(eqipoL, eqipoV, golesLocal, golesVisitante);
                                 partidoServicio.agregarPartido(partido);
                                 JOptionPane.showMessageDialog(null, "Partido agregado");
-                                txtLocal.setText("Equipo Local");
-                                txtVisitante.setText("Equipo Visitante");
-                                txtGolesL.setText("");
-                                txtGolesV.setText("");
-                            }
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Debes elegir dos equipos distintos");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Por selecciona equipos de la tabla");
-                }
-            }
-        });
-
-        tablaEquipos.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                bandera++;
-                int row = tablaEquipos.rowAtPoint(e.getPoint());
-                if (row >= 0) {
-                    tablaEquipos.setRowSelectionInterval(row, row);
-                    if (equipos != null && row < equipos.size() ) {
-                        if (bandera == 1){
-                            eqipoL = equipos.get(row);
-                            txtLocal.setText(eqipoL.getNombre());
-                        }else if (bandera == 2){
-                            eqipoV = equipos.get(row);
-                            txtVisitante.setText(eqipoV.getNombre());
-                        } else {
-                            txtLocal.setText("Equipo Local");
-                            txtVisitante.setText("Equipo Visitante");
-                            bandera = 0;
-                        }
-                    }
-                }
-            }
-        });
-        tablaPartidos.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                int row = tablaPartidos.rowAtPoint(e.getPoint());
-                if (row >= 0) {
-                    if (partidos != null && row < partidos.size() ) {
-                        partido =  partidos.get(row);
-                        eqipoL = partido.getLocal();
-                        eqipoV = partido.getIdVIsita();
-                        txtLocal.setText(partido.getLocal().getNombre());
-                        txtVisitante.setText(partido.getIdVIsita().getNombre());
-                        txtGolesL.setText(String.valueOf(partido.getgLocal()));
-                        txtGolesV.setText(String.valueOf(partido.getgVisitante()));
-                    }
-                }
-            }
-        });
-        btnEditar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                if (eqipoL != null && eqipoV != null) {
-                    if (eqipoV != eqipoL) {
-                        if (validarCampos()){
-                            if (validarGoles()){
-                                partido.setLocal(eqipoL);
-                                partido.setIdVIsita(eqipoV);
-                                partido.setgLocal(Integer.parseInt(txtGolesL.getText()));
-                                partido.setgVisitante(Integer.parseInt(txtGolesV.getText()));
-                                partidoServicio.editarPartido(partido);
-                                JOptionPane.showMessageDialog(null, "Partido editado");
-                                txtLocal.setText("Equipo Local");
-                                txtVisitante.setText("Equipo Visitante");
                                 txtGolesL.setText("");
                                 txtGolesV.setText("");
                                 llenarTablaPartidos();
@@ -138,15 +64,78 @@ public class UIPartidos {
                 }
             }
         });
+        tablaPartidos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int row = tablaPartidos.rowAtPoint(e.getPoint());
+                if (row >= 0) {
+                    if (partidos != null && row < partidos.size() ) {
+                        partido =  partidos.get(row);
+                        eqipoL = partido.getLocal();
+                        eqipoV = partido.getIdVIsita();
+                        encontrarEquipo(cbxLocal, eqipoL);
+                        encontrarEquipo(cbxVisitante, eqipoV);
+                        txtGolesL.setText(String.valueOf(partido.getgLocal()));
+                        txtGolesV.setText(String.valueOf(partido.getgVisitante()));
+                    }
+                }
+            }
+        });
+        btnEditar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                    if (eqipoL != null && eqipoV != null) {
+                        eqipoL = (Equipo) cbxLocal.getSelectedItem();
+                        eqipoV = (Equipo) cbxVisitante.getSelectedItem();
+                        if (eqipoV != eqipoL) {
+                            if (validarCampos()){
+                                if (validarGoles()){
+                                    partido.setLocal(eqipoL);
+                                    partido.setIdVIsita(eqipoV);
+                                    partido.setgLocal(Integer.parseInt(txtGolesL.getText()));
+                                    partido.setgVisitante(Integer.parseInt(txtGolesV.getText()));
+                                    partidoServicio.editarPartido(partido);
+                                    JOptionPane.showMessageDialog(null, "Partido editado");
+                                    txtGolesL.setText("");
+                                    txtGolesV.setText("");
+                                    llenarTablaPartidos();
+                                }
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Debes elegir dos equipos distintos");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Por seleccionar un partido de la tabla para editar");
+                    }
+
+            }
+        });
         btnEliminar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                partidoServicio.eliminarPartido(partido);
-                JOptionPane.showMessageDialog(null, "Partido eliminado");
-                llenarTablaPartidos();
+                if (eqipoL != null && eqipoV != null) {
+                    partidoServicio.eliminarPartido(partido);
+                    JOptionPane.showMessageDialog(null, "Partido eliminado");
+                    txtGolesL.setText("");
+                    txtGolesV.setText("");
+                    llenarTablaPartidos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debes elegir un partido de la tabla para eliminar");
+                }
             }
         });
+    }
+    public void encontrarEquipo(JComboBox<Equipo> cbxEquipo, Equipo equipo) {
+        for (int i = 0; i<cbxEquipo.getItemCount();i++) {
+            Equipo item = cbxEquipo.getItemAt(i);
+            if(item.getId() == equipo.getId()){
+                cbxEquipo.setSelectedIndex(i);
+                return;
+            }
+        }
     }
 
     public boolean validarGoles() {
@@ -173,24 +162,19 @@ public class UIPartidos {
         }
         return true;
     }
-    public void configurarTablaEquipos() {
-        tablaEquipos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tablaEquipos.setRowSelectionAllowed(true);
-        tablaEquipos.setRowHeight(30);
+    public void configurarTabla() {
         tablaPartidos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablaPartidos.setRowSelectionAllowed(true);
         tablaPartidos.setRowHeight(30);
     }
-    public void llenarTablaEquipos() {
-        model = new DefaultTableModel();
-        model.addColumn("Equipos");
+    public void llenarComboBox() {
         equipos = equipoServicio.obtenerEquipos();
         if (equipos != null) {
             for(Equipo equipo : equipos){
-                model.addRow(new Object[]{equipo.getNombre()});
+                cbxLocal.addItem(equipo);
+                cbxVisitante.addItem(equipo);
             }
         }
-        tablaEquipos.setModel(model);
     }
 
     public void llenarTablaPartidos() {

@@ -3,6 +3,8 @@ package org.example.soccer.ui;
 import org.example.soccer.modelo.Equipo;
 import org.example.soccer.servicios.EquipoServicio;
 import org.example.soccer.servicios.EquipoServicioImp;
+import org.example.soccer.servicios.GolServicio;
+import org.example.soccer.servicios.GolServicioImp;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -98,7 +100,7 @@ public class UIEquipos {
         listaEquipos = equipoServicios.obtenerEquipos();
         if (listaEquipos != null){
             for(Equipo equipo : listaEquipos){
-                model.addRow(new Object[]{equipo.getNombre()});
+                model.addRow(new Object[]{equipo});
             }
         }
         tableEquipos.setModel(model);
