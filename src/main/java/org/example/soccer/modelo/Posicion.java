@@ -51,8 +51,6 @@ public class Posicion {
 
     @Override
     public String toString() {
-        return "Posicion{" +
-                "id=" + id +
-                '}';
+        return getPos().toString();
     }
 }

@@ -28,11 +28,6 @@ public class PosicionServicioImp implements PosicionServicio {
         posImp.actualizarPosicion(posicion);
 
     }
-    @Override
-    public Posicion obtenerPosicion(Pos pos) {
-        return posImp.obtenerPosicion(pos);
-    }
-
 
 
 }

@@ -9,5 +9,4 @@ public interface PosicionServicio {
     Posicion agregarPosicion(Posicion posicion);
     List<Posicion> listarPosiciones();
     void actualizarPosicion(Posicion posicion);
-    Posicion obtenerPosicion(Pos pos);
 }

@@ -20,9 +20,10 @@ public class UIFutbolistas {
     private JButton btnAgregar;
     private JButton btnModificar;
     private JButton btnEliminar;
-    private JComboBox <Enum> cbPosiciones;
+    private JComboBox <Posicion> cbPosiciones;
     private JComboBox <Equipo> cbEquipos;
     private JPanel jPanel;
+    private Equipo equipo;
     private JButton volverButton;
     public Futbolista futbolista;
     private EquipoServicio equipoServicios = new EquipoServicioImp();
@@ -78,11 +79,11 @@ public class UIFutbolistas {
         listaPosiciones = posicionServicios.listarPosiciones();
 
         // Se crea  un modelo vacío
-        DefaultComboBoxModel<Enum> modeloPosiciones = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Posicion> modeloPosiciones = new DefaultComboBoxModel<>();
 
        // Recorremos la lista y se agrega cada enum al modelo
         for (Posicion posicion : listaPosiciones) {
-            modeloPosiciones.addElement(posicion.getPos());
+            modeloPosiciones.addElement(posicion);
         }
         // Se asigna el modelo al JComboBox
         cbPosiciones.setModel(modeloPosiciones);
@@ -115,15 +116,14 @@ public class UIFutbolistas {
 
     public void agregar(){
         String nombre = txtNombre.getText().trim();
-        Equipo equipo = (Equipo) cbEquipos.getSelectedItem();
-        Pos posicion = (Pos) cbPosiciones.getSelectedItem();
+        equipo = (Equipo) cbEquipos.getSelectedItem();
+        Posicion posicion = (Posicion) cbPosiciones.getSelectedItem();
         String fechaTexto = txFecha.getText().trim();
         if (nombre.isEmpty()|| fechaTexto.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No Pueden Estar Vacios Los Campos");
         } else {
-            Date fecha = Date.valueOf(fechaTexto); //Busca al equipo
-            Posicion p1 = posicionServicios.obtenerPosicion(posicion);  // Buscar la posicion seleccionada
-            futbolista = new Futbolista(nombre,equipo,p1,fecha);
+            Date fecha = Date.valueOf(fechaTexto); //Busca al equipo  // Buscar la posicion seleccionada
+            futbolista = new Futbolista(nombre,equipo,posicion,fecha);
             futbolistaServicio.agregarFutbolista(futbolista);
             JOptionPane.showMessageDialog(null, "Futbolista agregado correctamente");
             limpiarCampos();
@@ -132,7 +132,7 @@ public class UIFutbolistas {
 
     public void agregarPosicion(){
         List<Posicion> pos = posicionServicios.listarPosiciones();
-        if (pos != null) {
+        if (pos.isEmpty()) {
             Posicion p2 = new Posicion(Pos.MEDIO);
             Posicion p3 = new Posicion(Pos.PORTERO);
             Posicion p4 = new Posicion(Pos.DEFENSA);
@@ -141,17 +141,18 @@ public class UIFutbolistas {
             posicionServicio .agregarPosicion(p2);
             posicionServicio .agregarPosicion(p3);
             posicionServicio .agregarPosicion(p4);
+
         }
 
     }
 
     public void modificar() {
-        if (txtNombre.getText().isEmpty() || txFecha.getText().isEmpty()) {
+        if (futbolista == null) {
             JOptionPane.showMessageDialog(null, "Debes Selecionar Un Futbolista");
         } else {
             futbolista.setNombre(txtNombre.getText());
-            futbolista.setEquipo(equipoServicios.obtenerEquipo(cbEquipos.getSelectedItem().toString()));
-            futbolista.setPos(posicionServicios.obtenerPosicion((Pos) cbPosiciones.getSelectedItem()));
+            futbolista.setEquipo((Equipo) cbEquipos.getSelectedItem());
+            futbolista.setPos((Posicion) cbPosiciones.getSelectedItem());
             futbolista.setFechaN(Date.valueOf(txFecha.getText()));
             futbolistaServicio.actualizarFutbolista(futbolista);
             JOptionPane.showMessageDialog(null, "Futbolista Modificado correctamente");
@@ -160,13 +161,9 @@ public class UIFutbolistas {
     }
 
     public void eliminar(){
-        if (txtNombre.getText().isEmpty() || txFecha.getText().isEmpty()) {
+        if (futbolista == null) {
             JOptionPane.showMessageDialog(null, "Debes Selecionar Un Futbolista");
         } else {
-            futbolista.setNombre(txtNombre.getText());
-            futbolista.setEquipo(equipoServicios.obtenerEquipo(cbEquipos.getSelectedItem().toString()));
-            futbolista.setPos(posicionServicios.obtenerPosicion((Pos) cbPosiciones.getSelectedItem()));
-            futbolista.setFechaN(Date.valueOf(txFecha.getText()));
             futbolistaServicio.eliminarFutbolista(futbolista);
             JOptionPane.showMessageDialog(null, "Futbolista Elimnado correctamente");
             limpiarCampos();

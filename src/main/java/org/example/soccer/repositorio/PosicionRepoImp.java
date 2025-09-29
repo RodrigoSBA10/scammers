@@ -37,13 +37,5 @@ public class PosicionRepoImp  implements PosicionRepo {
         List<Posicion> posiciones = query.getResultList();
         return posiciones;
     }
-    @Override
-    public Posicion obtenerPosicion(Pos pos) {
-        em.getTransaction().begin();
-        TypedQuery<Posicion> query = em.createQuery("SELECT p FROM Posicion p WHERE p.pos = :pos", Posicion.class);
-        query.setParameter("pos", pos);
-        em.getTransaction().commit();
-        Posicion posicion = query.getSingleResult();
-        return posicion;
-    }
+
 }
