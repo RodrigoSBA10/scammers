@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="jPanel" layout-manager="GridLayoutManager" row-count="11" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="670" height="438"/>
+      <xy x="20" y="20" width="670" height="381"/>
     </constraints>
     <properties>
       <background color="-7302259"/>
@@ -84,7 +84,14 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-16490910"/>
+          <background color="-6311425"/>
+          <enabled value="true"/>
+          <fillsViewportHeight value="false"/>
+          <font name="Liberation Sans" size="20" style="3"/>
+          <foreground color="-16777216"/>
+          <gridColor color="-16754310"/>
+          <selectionBackground color="-394241"/>
+          <selectionForeground color="-1769443"/>
         </properties>
       </component>
       <component id="547a4" class="javax.swing.JButton" binding="btnAgregar">

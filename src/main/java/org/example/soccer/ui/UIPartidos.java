@@ -33,12 +33,12 @@ public class UIPartidos {
     private Equipo eqipoL;
     private Equipo eqipoV;
     private Partido partido;
+    private JScrollPane scrollPane;
 
     public  UIPartidos() {
         configurarTabla();
         llenarComboBox();
         llenarTablaPartidos();
-
         btnAgregar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -229,4 +229,5 @@ public class UIPartidos {
     public void setPanel1(JPanel panel1) {
         this.panel1 = panel1;
     }
+
 }

@@ -117,7 +117,21 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-6311425"/>
           <enabled value="true"/>
+          <font size="10" style="3"/>
+          <foreground color="-16777216"/>
+          <gridColor color="-16754310"/>
+          <selectionBackground color="-394241"/>
+          <selectionForeground color="-1769443"/>
+        </properties>
+      </component>
+      <component id="f9892" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value=""/>
         </properties>
       </component>
     </children>

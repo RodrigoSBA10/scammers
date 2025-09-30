@@ -12,6 +12,7 @@ public class inicio {
     private JButton btnEquipo;
     private JButton btnPartidos;
     private JButton btnGoles;
+    private JLabel image;
 
     public static void main(String[] args) {
 
@@ -35,7 +36,7 @@ public class inicio {
             frame.setContentPane(futbolistas.getjPanel());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
-            frame.setSize(650, 520);
+            frame.setSize(800, 600);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             SwingUtilities.getWindowAncestor(panel1).dispose();
