@@ -34,16 +34,6 @@ public class UIFutbolistas {
     private List<Posicion> listaPosiciones;
     private PosicionServicio posicionServicio = new PosicionServicioImp();
 
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("UIFutbolistas");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(new UIFutbolistas().jPanel);
-        frame.pack();
-        frame.setSize(650,520);
-        frame.setVisible(true);
-    }
-
     public UIFutbolistas() {
        agregarPosicion();
         llenarTabla();

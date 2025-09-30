@@ -133,21 +133,6 @@ public class UIEquipos {
         }
     }
 
-    public static void main(final String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame frame = new JFrame("UIEquipos");
-                frame.setContentPane(new UIEquipos().panel1);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.pack();
-                frame.setSize(800, 600);
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-            }
-        });
-    }
-
     public JPanel getPanel1() {
         return panel1;
     }

@@ -1,5 +1,4 @@
 package org.example.soccer.ui;
-import org.example.soccer.repositorio.EntityManagerSIngleton;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -27,7 +26,6 @@ public class inicio {
     }
     public inicio() {
         btnSalir.addActionListener(e->{
-            EntityManagerSIngleton.getInstance().close();
           System.exit(0);
         });
         btnAgregarFutb.addActionListener(e->{ // cierra el JFrame actual

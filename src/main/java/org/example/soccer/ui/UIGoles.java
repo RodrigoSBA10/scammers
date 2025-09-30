@@ -30,16 +30,6 @@ public class UIGoles {
     private GolServicio golServicio = new GolServicioImp();
     private FutbolistaServicio futbolistaServicio = new FutbolistaServicioImp();
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("UIGOles");
-        frame.setContentPane(new UIGoles().panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
     public UIGoles() {
         configurarTabla();
         llenarComboboxs();
