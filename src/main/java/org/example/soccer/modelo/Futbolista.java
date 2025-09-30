@@ -11,9 +11,10 @@ public class Futbolista {
     private int id;
     private String nombre;
     //Relacion de Equipo
+
+    @JoinColumn(name = "id_Equipo")
     @ManyToOne
     //Es La CLave Foranea De Equipo
-    @JoinColumn(name = "ID_Equipo")
     private Equipo equipo;
     //Relacion de posiciones
     @ManyToOne
@@ -76,12 +77,7 @@ public class Futbolista {
 
     @Override
     public String toString() {
-        return "Futbolista{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", equipo=" + equipo.getNombre() +
-                ", pos=" + pos.getPos() +
-                ", fechaN=" + fechaN +
-                '}';
+        return  nombre + " " + equipo.getNombre() + " "
+                + pos.getPos() + " " + getFechaN();
     }
 }

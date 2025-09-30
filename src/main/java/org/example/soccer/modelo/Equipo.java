@@ -1,14 +1,19 @@
 package org.example.soccer.modelo;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "Equipos")
+@Table(name = "equipos")
 public class Equipo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Equipo")
     private int id;
     private String nombre;
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.REMOVE)
+    private List<Futbolista> futbolistas;
+
 
     public Equipo() {
     }

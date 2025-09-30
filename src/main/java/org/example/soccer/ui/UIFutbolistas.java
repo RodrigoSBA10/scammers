@@ -102,15 +102,15 @@ public class UIFutbolistas {
             llenarTabla();
         });
         volverButton.addActionListener(e ->  {
-            SwingUtilities.getWindowAncestor(jPanel).dispose(); // cierra el JFrame actual
             inicio inicio = new inicio();
             JFrame frame = new JFrame("inicio");
             frame.setContentPane(inicio.getPanel1());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setSize(650, 520);
+            frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-
+            SwingUtilities.getWindowAncestor(jPanel).dispose(); // cierra el JFrame actual
         });
     }
 
@@ -119,14 +119,24 @@ public class UIFutbolistas {
         equipo = (Equipo) cbEquipos.getSelectedItem();
         Posicion posicion = (Posicion) cbPosiciones.getSelectedItem();
         String fechaTexto = txFecha.getText().trim();
-        if (nombre.isEmpty()|| fechaTexto.isEmpty()) {
+        if (nombre.isEmpty() || fechaTexto.isEmpty() || equipo == null || posicion == null) {
             JOptionPane.showMessageDialog(null, "No Pueden Estar Vacios Los Campos");
-        } else {
-            Date fecha = Date.valueOf(fechaTexto); //Busca al equipo  // Buscar la posicion seleccionada
-            futbolista = new Futbolista(nombre,equipo,posicion,fecha);
+            return;
+        }
+
+        try {
+            Date fecha = Date.valueOf(fechaTexto);
+            futbolista = new Futbolista(nombre, equipo, posicion, fecha);
+
+            // DEBUG: Verifica los valores antes de insertar
+            System.out.println("Intentando insertar: " + nombre + ", " + equipo.getId() + ", " + posicion.getId() + ", " + fecha);
+
             futbolistaServicio.agregarFutbolista(futbolista);
             JOptionPane.showMessageDialog(null, "Futbolista agregado correctamente");
             limpiarCampos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

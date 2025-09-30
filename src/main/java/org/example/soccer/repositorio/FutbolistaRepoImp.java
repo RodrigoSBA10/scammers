@@ -1,7 +1,6 @@
 package org.example.soccer.repositorio;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import org.example.soccer.modelo.Futbolista;
 
@@ -11,15 +10,14 @@ public class FutbolistaRepoImp implements FutbolistaRepo {
     EntityManager em;
     public FutbolistaRepoImp() {
         //Lo inicializa el constructor
-        em = Persistence.createEntityManagerFactory("BaseFutbol").createEntityManager();
+        em = EntityManagerSIngleton.getInstance();
     }
 
     @Override
-    public Futbolista agregarFutbolista(Futbolista f) {
+    public void agregarFutbolista(Futbolista f) {
         em.getTransaction().begin();
         em.persist(f);
         em.getTransaction().commit();
-        return f;
     }
 
     @Override

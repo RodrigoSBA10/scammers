@@ -22,6 +22,7 @@ public class UIEquipos {
     private JTextField txtEdit;
     private JButton btnEditar;
     private JButton eliminarButton;
+    private JButton btnVolver;
     private EquipoServicio equipoServicios = new EquipoServicioImp();
     private Equipo equipo;
     private DefaultTableModel model;
@@ -39,7 +40,7 @@ public class UIEquipos {
         tableEquipos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int fila =  tableEquipos.getSelectedRow();
+                int fila =  tableEquipos.rowAtPoint(e.getPoint());
                 if (fila >= 0) {
                     tableEquipos.setRowSelectionInterval(fila, fila);
                     if (listaEquipos != null && fila < listaEquipos.size()) {
@@ -83,6 +84,21 @@ public class UIEquipos {
                 }
             }
         });
+        btnVolver.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                inicio inicio = new inicio();
+                JFrame frame = new JFrame("inicio");
+                frame.setContentPane(inicio.getPanel1());
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setSize(650, 520);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                SwingUtilities.getWindowAncestor(panel1).dispose();
+            }
+        });
     }
 
     public void configurarTabla() {
@@ -98,7 +114,7 @@ public class UIEquipos {
         listaEquipos = equipoServicios.obtenerEquipos();
         if (listaEquipos != null){
             for(Equipo equipo : listaEquipos){
-                model.addRow(new Object[]{equipo.getNombre()});
+                model.addRow(new Object[]{equipo});
             }
         }
         tableEquipos.setModel(model);
@@ -130,5 +146,13 @@ public class UIEquipos {
                 frame.setVisible(true);
             }
         });
+    }
+
+    public JPanel getPanel1() {
+        return panel1;
+    }
+
+    public void setPanel1(JPanel panel1) {
+        this.panel1 = panel1;
     }
 }

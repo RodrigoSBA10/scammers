@@ -1,10 +1,7 @@
 package org.example.soccer.repositorio;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
-import org.example.soccer.enums.Pos;
-import org.example.soccer.modelo.Futbolista;
 import org.example.soccer.modelo.Posicion;
 
 import java.util.List;
@@ -12,7 +9,7 @@ import java.util.List;
 public class PosicionRepoImp  implements PosicionRepo {
     EntityManager em;
     public PosicionRepoImp(){
-        em = Persistence.createEntityManagerFactory("BaseFutbol").createEntityManager();
+        em = EntityManagerSIngleton.getInstance();
     }
 
     @Override
