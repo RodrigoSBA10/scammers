@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface EquipoRepo {
 
-    public List<Equipo> obtenerEquipos();
-    public void agregarEquipo(Equipo equipo);
-    public void eliminarEquipo(Equipo equipo);
-    public void editarEquipo(Equipo equipo);
+    List<Equipo> obtenerEquipos();
+    void agregarEquipo(Equipo equipo);
+    void eliminarEquipo(Equipo equipo);
+    void editarEquipo(Equipo equipo);
 }

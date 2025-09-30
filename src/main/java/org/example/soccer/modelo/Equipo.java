@@ -1,8 +1,6 @@
 package org.example.soccer.modelo;
 import jakarta.persistence.*;
-import org.hibernate.Remove;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,6 +11,9 @@ public class Equipo {
     @Column(name = "id_Equipo")
     private int id;
     private String nombre;
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.REMOVE)
+    private List<Futbolista> futbolistas;
+
 
     public Equipo() {
     }

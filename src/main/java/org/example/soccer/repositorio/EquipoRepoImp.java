@@ -1,16 +1,13 @@
 package org.example.soccer.repositorio;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import org.example.soccer.modelo.Equipo;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class EquipoRepoImp implements EquipoRepo {
     EntityManager emf;
     public EquipoRepoImp() {
-        emf = Persistence.createEntityManagerFactory("BaseFutbol").createEntityManager();
+        emf = EntityManagerSIngleton.getInstance();
     }
 
     @Override

@@ -1,7 +1,6 @@
 package org.example.soccer.repositorio;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import org.example.soccer.modelo.Partido;
 
@@ -10,7 +9,7 @@ import java.util.List;
 public class PartidoRepoImp implements PartidoRepo {
     EntityManager em;
     public PartidoRepoImp() {
-        this.em = Persistence.createEntityManagerFactory("BaseFutbol").createEntityManager();
+        this.em = EntityManagerSIngleton.getInstance();
     }
     @Override
     public void agregarPartido(Partido partido) {

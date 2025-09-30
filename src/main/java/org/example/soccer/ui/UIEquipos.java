@@ -3,8 +3,6 @@ package org.example.soccer.ui;
 import org.example.soccer.modelo.Equipo;
 import org.example.soccer.servicios.EquipoServicio;
 import org.example.soccer.servicios.EquipoServicioImp;
-import org.example.soccer.servicios.GolServicio;
-import org.example.soccer.servicios.GolServicioImp;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +22,7 @@ public class UIEquipos {
     private JTextField txtEdit;
     private JButton btnEditar;
     private JButton eliminarButton;
+    private JButton btnVolver;
     private EquipoServicio equipoServicios = new EquipoServicioImp();
     private Equipo equipo;
     private DefaultTableModel model;
@@ -83,6 +82,21 @@ public class UIEquipos {
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecciona un equipo de la tabla para eliminar");
                 }
+            }
+        });
+        btnVolver.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                inicio inicio = new inicio();
+                JFrame frame = new JFrame("inicio");
+                frame.setContentPane(inicio.getPanel1());
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setSize(650, 520);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                SwingUtilities.getWindowAncestor(panel1).dispose();
             }
         });
     }

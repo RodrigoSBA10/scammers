@@ -25,6 +25,7 @@ public class UIPartidos {
     private JButton btnEliminar;
     private JComboBox<Equipo> cbxLocal;
     private JComboBox<Equipo> cbxVisitante;
+    private JButton btnVolver;
     private List<Equipo> equipos;
     private List<Partido> partidos;
     private DefaultTableModel model;
@@ -44,7 +45,6 @@ public class UIPartidos {
                 super.mouseClicked(e);
                 eqipoL = (Equipo) cbxLocal.getSelectedItem();
                 eqipoV = (Equipo) cbxVisitante.getSelectedItem();
-                if (eqipoL != null && eqipoV != null) {
                     if (eqipoV != eqipoL) {
                         if (validarCampos()){
                             if (validarGoles()){
@@ -54,14 +54,14 @@ public class UIPartidos {
                                 txtGolesL.setText("");
                                 txtGolesV.setText("");
                                 llenarTablaPartidos();
+                                eqipoL = null;
+                                eqipoV = null;
+                                partido = null;
                             }
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Debes elegir dos equipos distintos");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Por selecciona equipos de la tabla");
-                }
             }
         });
         tablaPartidos.addMouseListener(new MouseAdapter() {
@@ -86,7 +86,7 @@ public class UIPartidos {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                    if (eqipoL != null && eqipoV != null) {
+                    if (partido != null) {
                         eqipoL = (Equipo) cbxLocal.getSelectedItem();
                         eqipoV = (Equipo) cbxVisitante.getSelectedItem();
                         if (eqipoV != eqipoL) {
@@ -101,6 +101,7 @@ public class UIPartidos {
                                     txtGolesL.setText("");
                                     txtGolesV.setText("");
                                     llenarTablaPartidos();
+                                    partido = null;
                                 }
                             }
                         } else {
@@ -116,15 +117,31 @@ public class UIPartidos {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (eqipoL != null && eqipoV != null) {
+                if (partido != null) {
                     partidoServicio.eliminarPartido(partido);
                     JOptionPane.showMessageDialog(null, "Partido eliminado");
                     txtGolesL.setText("");
                     txtGolesV.setText("");
                     llenarTablaPartidos();
+                    partido = null;
                 } else {
                     JOptionPane.showMessageDialog(null, "Debes elegir un partido de la tabla para eliminar");
                 }
+            }
+        });
+        btnVolver.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                inicio inicio = new inicio();
+                JFrame frame = new JFrame("inicio");
+                frame.setContentPane(inicio.getPanel1());
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setSize(650, 520);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                SwingUtilities.getWindowAncestor(panel1).dispose();
             }
         });
     }

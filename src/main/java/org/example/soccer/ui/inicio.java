@@ -1,4 +1,6 @@
 package org.example.soccer.ui;
+import org.example.soccer.repositorio.EntityManagerSIngleton;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -9,6 +11,7 @@ public class inicio {
     private JButton btnAgregarFutb;
     private JButton btnEquipo;
     private JButton btnPartidos;
+    private JButton btnGoles;
 
     public static void main(String[] args) {
 
@@ -23,6 +26,7 @@ public class inicio {
     }
     public inicio() {
         btnSalir.addActionListener(e->{
+            EntityManagerSIngleton.getInstance().close();
           System.exit(0);
         });
         btnAgregarFutb.addActionListener(e->{ // cierra el JFrame actual
@@ -57,6 +61,20 @@ public class inicio {
                 JFrame frame = new JFrame("UIPartidos");
                 UIPartidos partidos = new UIPartidos();
                 frame.setContentPane(partidos.getPanel1());
+                frame.pack();
+                frame.setSize(800, 600);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                SwingUtilities.getWindowAncestor(panel1).dispose();
+            }
+        });
+        btnGoles.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                JFrame frame = new JFrame("UIGoles");
+                UIGoles goles = new UIGoles();
+                frame.setContentPane(goles.getPanel());
                 frame.pack();
                 frame.setSize(800, 600);
                 frame.setLocationRelativeTo(null);

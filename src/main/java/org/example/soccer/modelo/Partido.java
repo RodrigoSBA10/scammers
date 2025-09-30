@@ -1,8 +1,6 @@
 package org.example.soccer.modelo;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Date;
 
@@ -18,9 +16,9 @@ public class Partido {
     @ManyToOne
     @JoinColumn(name = "visitante")
     private Equipo idVIsita;
-    @Column(name = "Goles Equipo Local")
+    @Column(name = "goles_Local")
     private int gLocal;
-    @Column (name = "Goles Equipo Visitante")
+    @Column (name = "goles_Visitante")
     private int gVisitante;
     private Date fecha;
 
@@ -86,9 +84,8 @@ public class Partido {
 
     @Override
     public String toString() {
-        return "Partido =" +
-                "Local =" + local +
-                ", VIsitante =" + idVIsita +
-                ", fecha=" + fecha;
+        return "(" + local + " " +  gLocal +" -- "
+                +  gVisitante + " " + idVIsita +
+                ") (" + fecha + ")";
     }
 }

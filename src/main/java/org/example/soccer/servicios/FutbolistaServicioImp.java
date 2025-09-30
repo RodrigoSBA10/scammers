@@ -13,8 +13,8 @@ public class FutbolistaServicioImp implements FutbolistaServicio {
     }
 
     @Override
-    public Futbolista agregarFutbolista(Futbolista f) {
-        return futbolista.agregarFutbolista(f);
+    public void agregarFutbolista(Futbolista f) {
+        futbolista.agregarFutbolista(f);
 
     }
 

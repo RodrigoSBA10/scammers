@@ -1,9 +1,6 @@
 package org.example.soccer.modelo;
 
 import jakarta.persistence.*;
-import org.hibernate.Remove;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Date;
 
@@ -14,10 +11,10 @@ public class Futbolista {
     private int id;
     private String nombre;
     //Relacion de Equipo
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @JoinColumn(name = "id_Equipo")
+    @ManyToOne
     //Es La CLave Foranea De Equipo
-    @JoinColumn(name = "ID_Equipo" )
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Equipo equipo;
     //Relacion de posiciones
     @ManyToOne
@@ -80,12 +77,7 @@ public class Futbolista {
 
     @Override
     public String toString() {
-        return "Futbolista{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", equipo=" + equipo.getNombre() +
-                ", pos=" + pos.getPos() +
-                ", fechaN=" + fechaN +
-                '}';
+        return  nombre + " " + equipo.getNombre() + " "
+                + pos.getPos() + " " + getFechaN();
     }
 }

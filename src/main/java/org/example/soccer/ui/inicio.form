@@ -66,6 +66,14 @@
           <text value="Partidos"/>
         </properties>
       </component>
+      <component id="5500f" class="javax.swing.JButton" binding="btnGoles">
+        <constraints>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Goles"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
