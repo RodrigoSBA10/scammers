@@ -38,6 +38,14 @@ public class Equipo {
         this.nombre = nombre;
     }
 
+    public List<Futbolista> getFutbolistas() {
+        return futbolistas;
+    }
+
+    public void setFutbolistas(List<Futbolista> futbolistas) {
+        this.futbolistas = futbolistas;
+    }
+
     @Override
     public String toString() {
         return nombre;

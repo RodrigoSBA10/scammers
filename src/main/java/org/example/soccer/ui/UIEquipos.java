@@ -74,11 +74,15 @@ public class UIEquipos {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (!txtEdit.getText().isEmpty()){
-                    equipoServicios.eliminarEquipo(equipo);
-                    txtEdit.setText("");
-                    txtEdit.setEditable(false);
-                    JOptionPane.showMessageDialog(null, "Equipo eliminado");
-                    llenarTabla();
+                    try {
+                        equipoServicios.eliminarEquipo(equipo);
+                        txtEdit.setText("");
+                        txtEdit.setEditable(false);
+                        JOptionPane.showMessageDialog(null, "Equipo eliminado");
+                        llenarTabla();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "No se puede elimnar equipos con partidos");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecciona un equipo de la tabla para eliminar");
                 }

@@ -13,9 +13,6 @@ public class Posicion {
     @Enumerated(EnumType.STRING)
     @Column(name = "Posiciones")
     private Pos pos; // Nombre de la posicion
-    //En esta relacion se asigna ya que una posicion
-    @OneToMany(mappedBy = "pos")
-    private List<Futbolista> futbolistas;
 
     public Posicion() {
 
@@ -39,14 +36,6 @@ public class Posicion {
 
     public void setPos(Pos pos) {
         this.pos = pos;
-    }
-
-    public List<Futbolista> getFutbolistas() {
-        return futbolistas;
-    }
-
-    public void setFutbolistas(List<Futbolista> futbolistas) {
-        this.futbolistas = futbolistas;
     }
 
     @Override
