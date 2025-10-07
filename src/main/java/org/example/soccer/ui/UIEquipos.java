@@ -44,7 +44,7 @@ public class UIEquipos {
                 if (fila >= 0) {
                     tableEquipos.setRowSelectionInterval(fila, fila);
                     if (listaEquipos != null && fila < listaEquipos.size()) {
-                        equipo =  listaEquipos.get(fila);
+                        equipo =  listaEquipos.get(fila);//equipoServicios.obtenerEquipo(listaEquipos.get(fila));
                         txtEdit.setText(equipo.getNombre());
                         txtEdit.setEditable(true);
 
@@ -76,13 +76,13 @@ public class UIEquipos {
                 if (!txtEdit.getText().isEmpty()){
                     try {
                         equipoServicios.eliminarEquipo(equipo);
-                        txtEdit.setText("");
-                        txtEdit.setEditable(false);
                         JOptionPane.showMessageDialog(null, "Equipo eliminado");
-                        llenarTabla();
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "No se puede elimnar equipos con partidos");
+                    }catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "No Se pueden eliminar equipos con partidos " );
                     }
+                    llenarTabla();
+                    txtEdit.setText("");
+                    txtEdit.setEditable(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Selecciona un equipo de la tabla para eliminar");
                 }

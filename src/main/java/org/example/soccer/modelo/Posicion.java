@@ -3,8 +3,6 @@ package org.example.soccer.modelo;
 import jakarta.persistence.*;
 import org.example.soccer.enums.Pos;
 
-import java.util.List;
-
 @Entity
 public class Posicion {
     @Id

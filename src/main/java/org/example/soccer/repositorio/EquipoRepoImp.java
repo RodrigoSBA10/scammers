@@ -5,39 +5,41 @@ import org.example.soccer.modelo.Equipo;
 import java.util.List;
 
 public class EquipoRepoImp implements EquipoRepo {
-    EntityManager emf;
+    EntityManager em;
     public EquipoRepoImp() {
-        emf = EntityManagerSIngleton.getInstance();
+        em = EntityManagerSIngleton.getInstance();
     }
 
     @Override
     public List<Equipo> obtenerEquipos() {
-        emf.getTransaction().begin();
-        TypedQuery<Equipo> query = emf.createQuery("SELECT e FROM Equipo e", Equipo.class);
+        em.getTransaction().begin();
+        TypedQuery<Equipo> query = em.createQuery("SELECT e FROM Equipo e", Equipo.class);
         List<Equipo> equipos = query.getResultList();
-        emf.getTransaction().commit();
+        em.getTransaction().commit();
         return equipos;
     }
 
     @Override
     public void agregarEquipo(Equipo equipo) {
-        emf.getTransaction().begin();
-        emf.persist(equipo);
-        emf.getTransaction().commit();
+        em.getTransaction().begin();
+        em.persist(equipo);
+        em.getTransaction().commit();
     }
 
     @Override
     public void eliminarEquipo(Equipo equipo) {
-        emf.getTransaction().begin();
-        emf.remove(equipo);
-        emf.getTransaction().commit();
+        // Managed
+        // Detached
+        em.getTransaction().begin();
+        em.remove(equipo);
+        em.getTransaction().commit();
     }
 
     @Override
     public void editarEquipo(Equipo equipo) {
-        emf.getTransaction().begin();
-        emf.merge(equipo);
-        emf.getTransaction().commit();
+        em.getTransaction().begin();
+        em.merge(equipo);
+        em.getTransaction().commit();
     }
 
 }

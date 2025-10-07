@@ -11,7 +11,7 @@ public class Equipo {
     @Column(name = "id_Equipo")
     private int id;
     private String nombre;
-    @OneToMany(mappedBy = "equipo", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Futbolista> futbolistas;
 
 
